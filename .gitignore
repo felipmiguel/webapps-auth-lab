@@ -1,0 +1,6 @@
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/.terraform/
+**/**/.terraform
+obo/terraform/.terraform.lock.hcl
+two-apis/terraform/.terraform.lock.hcl
