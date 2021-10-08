@@ -46,6 +46,18 @@ resource "azurerm_app_service" "api2" {
   site_config {
     dotnet_framework_version = "v5.0"
   }
+
+  # the terraform provider creates auth_settings in "Classic Mode" and requires to be migrated afterward. For that reason it is commented and required to be configured in the portal
+  # Also verify in the portal that the issuer is what is expected, sometimes it can be https://sts.windows.net/<tenant>/ or https://sts.windows.net/<tenant>/v2
+  # auth_settings {
+  #   enabled = true
+  #   # the main property for active directory is the allowed_audiences, as that is what will be checked during request authentication. This app won't need to authenticate itself against AAD
+  #   active_directory {
+  #     client_id         = azuread_application.api2.application_id
+  #     client_secret     = azuread_application_password.api2_password.value
+  #     allowed_audiences = [local.api2_app_id]
+  #   }
+  # }
 }
 
 
