@@ -4,3 +4,4 @@
 **/**/.terraform
 obo/terraform/.terraform.lock.hcl
 two-apis/terraform/.terraform.lock.hcl
+obo/terraform/.terraform.tfstate.lock.info

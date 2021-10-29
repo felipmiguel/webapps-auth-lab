@@ -68,7 +68,7 @@ resource "azurerm_app_service" "api2" {
   }
   auth_settings {
     enabled = true
-    ## the main property for active directory is the allowed_audiences, as that is what will be checked during request authentication. This app won't need to authenticate itself against AAD
+    # the main property for active directory is the allowed_audiences, as that is what will be checked during request authentication. This app won't need to authenticate itself against AAD
     active_directory {
       client_id         = azuread_application.api2.application_id
       client_secret     = azuread_application_password.api2_password.value
@@ -80,12 +80,12 @@ resource "azurerm_app_service" "api2" {
 resource "random_uuid" "app1_approle_id" {}
 resource "azuread_application" "app1" {
   display_name     = local.app1_name
-  # identifier_uris  = [local.app1_app_id]
-  # owners           = [data.azuread_client_config.current.object_id]
-  # sign_in_audience = "AzureADMyOrg"
-  # single_page_application {
-  #   redirect_uris = ["https://identityspa.z6.web.core.windows.net/assets/oidc-login-redirect.html"]
-  # }
+  identifier_uris  = [local.app1_app_id]
+  owners           = [data.azuread_client_config.current.object_id]
+  sign_in_audience = "AzureADMyOrg"
+  single_page_application {
+    redirect_uris = ["https://identityspa.z6.web.core.windows.net/assets/oidc-login-redirect.html"]
+  }
 
   # app_role {
   #   id                   = random_uuid.app1_approle_id.result
@@ -113,7 +113,7 @@ resource "azuread_application" "api2" {
   owners          = [data.azuread_client_config.current.object_id]
 
   api {
-    known_client_applications = [azuread_application.app1.id]
+    known_client_applications = [azuread_application.app1.application_id]
     oauth2_permission_scope {
       id                         = random_uuid.api2_impersonation_scope_id.result
       admin_consent_description  = "Access the application on behalf of user"
