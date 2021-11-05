@@ -1,7 +1,7 @@
 variable "solution_name" {
   type        = string
   description = "Name of the solution. This name will be used to compose the name of all resources deployed with this script"
-  default     = "oboapis"
+  default     = "obosapien"
 }
 
 variable "location" {
@@ -10,11 +10,11 @@ variable "location" {
 }
 
 variable "apps_tier" {
-    type = string
-    default = "Basic"  
+  type    = string
+  default = "Basic"
 }
 
 variable "apps_size" {
-    type = string
-    default = "B1"  
+  type    = string
+  default = "B1"
 }
